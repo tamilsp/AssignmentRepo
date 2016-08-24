@@ -17,7 +17,7 @@ class Category_MainPage extends Page {
     static at = {
         //checks for the title and whether the fields on Login Page are displayed
 
-        title == "Online Shopping in India at Snapdeal - Buy Books, Mobiles, Laptops, Apparel, Watches, Footwear, Recharge, Bill Payments & More"
+        title == "Online Shopping - Largest Online Shopping Site for Electronics, Mobile, Fashion & Home - Snapdeal"
 
     }
 
@@ -28,7 +28,7 @@ class Category_MainPage extends Page {
 // Get the data from excel and mousehover on the main menu
 
     def selectMainCategory() {
-        String category = readerUtil.getExcelData("MainMenu", 0)
+        String category = readerUtil.getExcelValues("MainMenu")
         def menuElement = category_mainModule.mainMenu(category)
         hoverOver(menuElement)
     }

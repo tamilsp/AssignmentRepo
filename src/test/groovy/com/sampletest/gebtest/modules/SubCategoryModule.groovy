@@ -9,6 +9,9 @@ class SubCategoryModule extends Module {
     static content = {
         subcat { submenu -> $(".headingText", text: submenu) }
 
+        subcatClick {$(".headingText").eq(0)}
+        link{$('li.navlink.hoverIn>a')}
+
         submenuNav { $('a[href*="http://www.snapdeal.com/products"]').eq(1) }
 
         fromPrice { $('input[name="fromVal"]').eq(0) }

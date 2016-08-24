@@ -31,35 +31,19 @@ class ReaderUtil {
         }
     }
 
-    public String getExcelData(String CellName, int col) {
+    public String getExcelValues(String CellName) {
         final DataFormatter df = new DataFormatter();
         Row = ExcelWSheet.getRow(0)
-        Cell = ExcelWSheet.getRow(0).getCell(col)
-        if (Cell.getStringCellValue().contentEquals("MainMenu")) {
-            Cell = ExcelWSheet.getRow(1).getCell(col);
-            excelData =Cell
-
-        } else if (Cell.getStringCellValue().contentEquals("SubMenu")) {
-            Cell = ExcelWSheet.getRow(1).getCell(col)
-            excelData =Cell
-
-
-        } else if (Cell.getStringCellValue().contentEquals("PriceFrom")) {
-            Cell = ExcelWSheet.getRow(1).getCell(col)
-            excelData =df.formatCellValue(Cell)
-
-        } else if (Cell.getStringCellValue().contentEquals("PriceTo")) {
-            Cell = ExcelWSheet.getRow(1).getCell(col);
-            excelData =df.formatCellValue(Cell)
-
+        for (int j = 0; j < Row.getLastCellNum(); j++) {
+            Cell = ExcelWSheet.getRow(0).getCell(j)
+            if (Cell.getStringCellValue().contentEquals(CellName)) {
+                Cell = ExcelWSheet.getRow(1).getCell(j);
+                excelData = df.formatCellValue(Cell)
+                break;
+            }
         }
-
-        return Cell
-
-
+        return excelData
     }
-
-
 
 
 }

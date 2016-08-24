@@ -12,7 +12,7 @@ class SubCategoryPage extends Page {
     ReaderUtil readerUtil = new ReaderUtil()
 
     static at = {
-        waitFor { subCategoryModule.submenuNav.displayed }
+        waitFor { subCategoryModule.link.displayed }
 
     }
 
@@ -23,14 +23,14 @@ class SubCategoryPage extends Page {
 
 //Get the sub menu from  execel and click on it
     def selectSubMenu() {
-        def subMenuValue = readerUtil.getExcelData("SubMenu", 1)
+        def subMenuValue = readerUtil.getExcelValues("SubMenu")
         def element = subCategoryModule.subcat(subMenuValue)
         element.click()
     }
 
 // Specify the  from price range from the excel
     def specifyFromPrice() {
-        def fromPrice = readerUtil.getExcelData("PriceFrom", 2)
+        def fromPrice = readerUtil.getExcelValues("PriceFrom")
         waitFor { subCategoryModule.fromPrice.displayed }
         subCategoryModule.fromPrice.value("")
         subCategoryModule.fromPrice.value(fromPrice)
@@ -38,7 +38,7 @@ class SubCategoryPage extends Page {
 
     // Specify the to price range from the excel
     def specifyToPrice() {
-        def toPrice = readerUtil.getExcelData("PriceTo", 3)
+        def toPrice = readerUtil.getExcelValues("PriceTo")
         waitFor { subCategoryModule.toPrice.displayed }
         subCategoryModule.toPrice.value("")
         subCategoryModule.toPrice.value(toPrice)
