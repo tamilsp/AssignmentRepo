@@ -1,0 +1,6 @@
+git:latest
+git-client:latest
+git-parameter:latest
+scm-api:latest
+credentials:latest
+xvfb:latest

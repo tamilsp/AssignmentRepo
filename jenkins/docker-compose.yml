@@ -1,0 +1,9 @@
+jenkins:
+  build: .
+  container_name: cptest_jenkins
+  ports:
+    - 9000:8080
+  volumes:
+    - /var/cptest_jenkins_home:/var/jenkins_home
+  environment:
+    - VIRTUAL_HOST=jenkins.cpbuild.zoomsystems.com

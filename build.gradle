@@ -1,0 +1,71 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    id "com.github.tkruse.groovysh" version "1.0.8"
+    id "net.carlosgsouza.console" version "1.0.1"
+}
+
+group 'com.zoomsystems'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply from: "gradle/osSpecificDownloads.gradle"
+
+repositories {
+    jcenter()
+}
+
+ext {
+    drivers = ["firefox", "chrome"]
+    seleniumVersion = '2.53.1'
+    chromeDriverVersion = '2.19'
+    phantomJsVersion = '1.9.7'
+}
+
+dependencies {
+
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile 'org.gebish:geb-spock:0.12.2'
+    compile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+    compile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
+    compile "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+    compile "org.apache.poi:ooxml-schemas:1.0"
+    compile "org.apache.poi:poi:3.9"
+    compile "org.apache.poi:poi-ooxml:3.13"
+
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+
+
+}
+
+sourceSets {
+    main {
+        output.resourcesDir = "build/classes/main"
+    }
+    test {
+        output.resourcesDir = "build/classes/test"
+    }
+}
+
+tasks.withType(Test) {
+    systemProperties = System.getProperties()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}
+
+tasks.test {
+    systemProperties([
+            'geb.cucumber.step.packages': 'pages',
+    ])
+}
+
+
